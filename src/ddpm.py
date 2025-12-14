@@ -1,13 +1,5 @@
 # From https://github.com/CompVis/latent-diffusion/blob/main/ldm/models/diffusion/ddpm.py
 
-"""
-wild mixture of
-https://github.com/lucidrains/denoising-diffusion-pytorch/blob/7706bdfc6f527f58d33f84b7b522e61e6e3164b3/denoising_diffusion_pytorch/denoising_diffusion_pytorch.py
-https://github.com/openai/improved-diffusion/blob/e94489283bb876ac1477d5dd7709bbbd2d9902ce/improved_diffusion/gaussian_diffusion.py
-https://github.com/CompVis/taming-transformers
--- merci
-"""
-
 import torch
 import torch.nn as nn
 import numpy as np
@@ -18,14 +10,15 @@ from contextlib import contextmanager
 from functools import partial
 from tqdm import tqdm
 from torchvision.utils import make_grid
-from pytorch_lightning.utilities.distributed import rank_zero_only
+from pytorch_lightning.utilities.rank_zero import rank_zero_only
+# from pytorch_lightning.utilities.distributed import rank_zero_only # See https://github.com/CompVis/stable-diffusion/issues/758#issuecomment-2727718102
 
-from ldm.util import log_txt_as_img, exists, default, ismap, isimage, mean_flat, count_params, instantiate_from_config
-from ldm.modules.ema import LitEma
-from ldm.modules.distributions.distributions import normal_kl, DiagonalGaussianDistribution
-from ldm.models.autoencoder import VQModelInterface, IdentityFirstStage, AutoencoderKL
-from ldm.modules.diffusionmodules.util import make_beta_schedule, extract_into_tensor, noise_like
-from ldm.models.diffusion.ddim import DDIMSampler
+from util import log_txt_as_img, exists, default, ismap, isimage, mean_flat, count_params, instantiate_from_config
+from ema import LitEma
+from distributions import normal_kl, DiagonalGaussianDistribution
+from autoencoder import VQModelInterface, IdentityFirstStage, AutoencoderKL
+from util_diffusion import make_beta_schedule, extract_into_tensor, noise_like
+from ddim import DDIMSampler
 
 
 __conditioning_keys__ = {'concat': 'c_concat',
