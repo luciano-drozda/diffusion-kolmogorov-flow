@@ -3,7 +3,7 @@
 
 model:
   base_learning_rate: 1.0e-06
-  target: ldm.models.diffusion.ddpm.LatentDiffusion
+  target: ddpm.LatentDiffusion
   params:
     linear_start: 0.0015
     linear_end: 0.0155
@@ -17,7 +17,7 @@ model:
     concat_mode: true
     cond_stage_trainable: false
     unet_config:
-      target: ldm.modules.diffusionmodules.openaimodel.UNetModel
+      target: openaimodel.UNetModel
       params:
         image_size: 64
         in_channels: 6
@@ -34,7 +34,7 @@ model:
         - 4
         num_head_channels: 32
     first_stage_config:
-      target: ldm.models.autoencoder.VQModelInterface
+      target: autoencoder.VQModelInterface
       params:
         embed_dim: 3
         n_embed: 8192
@@ -57,27 +57,3 @@ model:
           target: torch.nn.Identity
     cond_stage_config:
       target: torch.nn.Identity
-data:
-  target: main.DataModuleFromConfig
-  params:
-    batch_size: 64
-    wrap: false
-    num_workers: 12
-    train:
-      target: ldm.data.openimages.SuperresOpenImagesAdvancedTrain
-      params:
-        size: 256
-        degradation: bsrgan_light
-        downscale_f: 4
-        min_crop_f: 0.5
-        max_crop_f: 1.0
-        random_crop: true
-    validation:
-      target: ldm.data.openimages.SuperresOpenImagesAdvancedValidation
-      params:
-        size: 256
-        degradation: bsrgan_light
-        downscale_f: 4
-        min_crop_f: 0.5
-        max_crop_f: 1.0
-        random_crop: true
