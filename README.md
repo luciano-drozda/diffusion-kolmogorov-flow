@@ -1,6 +1,6 @@
 # Latent Diffusion Model for super-resolution of JAX-CFD 2D Kolmogorov flow data
 
-Create a [Python virtual environment](https://docs.python.org/3/library/venv.html#creating-virtual-environments), [activate it](https://docs.python.org/3/library/venv.html#how-venvs-work), and install dependencies via the command below:
+[Create a Python virtual environment](https://docs.python.org/3/library/venv.html#creating-virtual-environments), [activate it](https://docs.python.org/3/library/venv.html#how-venvs-work), and install dependencies via the command below:
 
 ```bash
 pip install -r requirements.txt
@@ -16,7 +16,7 @@ Run `data/generate.ipynb`. It stores the following files in disk:
 
 - `data/data.h5`: JAX-CFD simulation data with shape `(nb_snapshots, 256, 256)`;
 
-- `data/data_normalized.h5`: A normalized version of JAX-CFD simulation data where values lie in the range `\[-1,1\]`. It also includes normalized data downsampled to a `(64, 64)` grid (scale factor of `1/4`);
+- `data/data_normalized.h5`: A normalized version of JAX-CFD simulation data where values lie in the range `[-1,1]`. It also includes normalized data downsampled to a `(64, 64)` grid (scale factor of `1/4`);
 
 - `data/data_normalized.png`: An image showing snapshots of JAX-CFD normalized simulation data;
 
