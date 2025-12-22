@@ -12,15 +12,15 @@ pip install -r requirements.txt
 
 Run `data/generate.ipynb`. It stores the following files in disk:
 
-- `data/data.png`: An image of the first 30 snapshots from JAX-CFD simulation data (vorticity field);
+- `data/data.png`: An image showing snapshots of JAX-CFD simulation data (vorticity field);
 
 - `data/data.h5`: JAX-CFD simulation data with shape `(nb_snapshots, 256, 256)`;
 
-- `data/data_normalized.h5`: A normalized version of JAX-CFD simulation data where values lie in the range \[-1,1\]. It also includes normalized data which was downsampled to a `(64, 64)` grid (scale factor of `1/4`);
+- `data/data_normalized.h5`: A normalized version of JAX-CFD simulation data where values lie in the range `\[-1,1\]`. It also includes normalized data downsampled to a `(64, 64)` grid (scale factor of `1/4`);
 
-- `data/data_normalized.png`: An image of the first 30 snapshots from JAX-CFD normalized simulation data;
+- `data/data_normalized.png`: An image showing snapshots of JAX-CFD normalized simulation data;
 
-- `data/data_normalized_lr.png`: An image of the first 30 snapshots from JAX-CFD normalized simulation data downsampled to a `(64, 64)` grid.
+- `data/data_normalized_lr.png`: An image showing snapshots of JAX-CFD normalized simulation data downsampled to a `(64, 64)` grid.
 
 ### Step 2: Train a Latent Diffusion Model
 
