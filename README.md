@@ -36,5 +36,7 @@ Run `inference.ipynb`. It stores the following files in disk:
 
 - `ldm.gif`: An animation comparing LDM output with ground-truth from JAX-CFD simulation data. It also includes downsampled JAX-CFD simulation data as LDM Input / Conditioning;
 
+- `data/data_normalized_ldm.h5`: LDM output with shape `(nb_snapshots, 256, 256)`.
+
 ## Acknowledgements
 The code in this repo heavily borrows from [CompVis/latent-diffusion](https://github.com/CompVis/latent-diffusion) and uses [JAX-CFD](https://github.com/google/jax-cfd) for data generation.
