@@ -1,3 +1,18 @@
+# Compressed files
+*.zip
+
+# PyTorch checkpoints
+*.ckpt
+
+# Lightning logs
+lightning_logs/
+
+# HDF5 files
+*.h5
+
+# GIF files
+*.gif
+
 # Image files
 *.png
 
