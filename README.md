@@ -47,7 +47,7 @@ The code in this repo heavily borrows from [CompVis/latent-diffusion](https://gi
 #### If you use this sotware, please cite us:
 
 ```bibtex
-@software{drozda_2025_18036055,
+@software{2025_Drozda_LDM_Kolmogorov,
   author       = {Drozda, Luciano},
   title        = {Latent Diffusion Model for super-resolution of JAX-CFD 2D Kolmogorov flow data},
   year         = 2025,
