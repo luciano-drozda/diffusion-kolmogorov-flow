@@ -11,6 +11,8 @@ from   collections import namedtuple
 from   tqdm        import tqdm
 from   einops      import repeat
 
+from ldm.util import exists
+
 # From https://github.com/CompVis/taming-transformers/blob/master/taming/modules/util.py
 class ActNorm(nn.Module):
     def __init__(self, num_features, logdet=False, affine=True,
