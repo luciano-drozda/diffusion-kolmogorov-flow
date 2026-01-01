@@ -122,9 +122,13 @@ class VQModel(pl.LightningModule):
         encode_output = self.encode(input)
         
         # Handle different return value counts from encode
-        if len(encode_output) == 2:
+        if isinstance(encode_output, torch.Tensor):
+            # If encode returns just the latent, quantize it manually
+            h = encode_output
+            quant, diff, info = self.quantize(h)
+        elif len(encode_output) == 2:
             quant, diff = encode_output
-            info = None
+            info = [None, None, quant.shape]  # Create default info
         elif len(encode_output) >= 3:
             quant, diff, info = encode_output[:3]
         else:
