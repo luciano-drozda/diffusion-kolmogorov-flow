@@ -117,8 +117,26 @@ class VQModel(pl.LightningModule):
         return dec
 
     def forward(self, input, return_pred_indices=False):
-        quant, diff, (_,_,ind) = self.encode(input)
+        # quant, diff, (_,_,ind) = self.encode(input)
+        
+        encode_output = self.encode(input)
+        
+        # Handle different return value counts from encode
+        if len(encode_output) == 2:
+            quant, diff = encode_output
+            info = None
+        elif len(encode_output) >= 3:
+            quant, diff, info = encode_output[:3]
+        else:
+            raise ValueError(f"Unexpected encode output length: {len(encode_output)}")
+        
+        # Extract index from info if it has the expected structure
+        ind = None
+        if info is not None and isinstance(info, (tuple, list)) and len(info) > 2:
+            ind = info[2]
+        
         dec = self.decode(quant)
+        
         if return_pred_indices:
             return dec, diff, ind
         return dec, diff
